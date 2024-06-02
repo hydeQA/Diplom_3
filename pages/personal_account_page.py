@@ -42,3 +42,13 @@ class Personal_Account_Page(BasePage):
     def click_enter_button(self):
         enter_button = self.wait_and_find_element(PersonalAccountLocators.ENTER_BUTTON)
         self.driver.execute_script("arguments[0].click();", enter_button)
+
+    @allure.step("Кликнуть по кнопке 'История заказов' в Личном кабинете")
+    def click_order_history_btn(self):
+        order_history_btn = self.wait_and_find_element(PersonalAccountLocators.ORDER_HISTORY_BTN)
+        self.driver.execute_script("arguments[0].click();", order_history_btn)
+
+    @allure.step("Кликнуть по кнопке 'Выход' в 'Личном Кабинете'")
+    def click_exit_btn(self):
+        exit_btn = self.wait_and_find_element(PersonalAccountLocators.EXIT_BTN)
+        self.driver.execute_script("arguments[0].click();", exit_btn)
