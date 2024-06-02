@@ -1,6 +1,5 @@
 from pages.base_page import BasePage
 from urls import Urls
-from locators.recovery_password_page_locators import RecoveryPassPageLocators
 from locators.personal_account_page_locators import PersonalAccountLocators
 from locators.main_page_locators import MainPageLocators
 import allure

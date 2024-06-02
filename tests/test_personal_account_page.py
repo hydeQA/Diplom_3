@@ -1,7 +1,4 @@
-import time
-
 from pages.personal_account_page import Personal_Account_Page
-from locators.recovery_password_page_locators import RecoveryPassPageLocators
 from locators.personal_account_page_locators import PersonalAccountLocators
 from locators.main_page_locators import MainPageLocators
 import allure

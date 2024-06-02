@@ -3,6 +3,7 @@ class Urls:
     ORDER_HISTORY_URL = "account/order-history"
     LOGIN_URL = "login"
 
+    LIST_ORDER_PAGE = "feed"    # Страница "Лента заказов"
 
     API_URL = "https://stellarburgers.nomoreparties.site/api/"
 
