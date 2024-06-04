@@ -4,7 +4,7 @@ import allure
 import burger_api
 
 class TestOrderListPage:
-    @allure.title("Проверка успешного открытия окна с деталями заказа на 'Ленте треков'")
+    @allure.title("Проверка успешного открытия окна с деталями заказа на 'Ленте заказов'")
     @allure.description("Проверка успешного перехода по кнопке 'Конструктор' в шапке сайта")
     def test_open_detail_order_window_success(self, driver):
         order_list_page = OrderListPage(driver)
@@ -146,6 +146,3 @@ class TestOrderListPage:
         access_token = burger_api.get_access_token(user_response)
         burger_api.delete_user(access_token)
         assert number_in_order_list == new_order_number
-
-
-
