@@ -1,3 +1,4 @@
+from selenium.webdriver.support.wait import WebDriverWait
 from seletools.actions import drag_and_drop
 from pages.base_page import BasePage
 from urls import Urls
@@ -102,11 +103,22 @@ class OrderListPage(BasePage):
         list_order_button = self.wait_and_find_element(MainPageLocators.CONSTRUCTOR_BTN)
         self.driver.execute_script("arguments[0].click();", list_order_button)
 
+    @allure.step("Получить значение счётчика 'Выполнено за сегодня' заказаов на странице 'Лента заказов'")
+    def get_orders_counter_today(self):
+        number = self.wait_and_find_element(OrderListPageLocators.ORDER_COUNTER_TODAY)
+        return int(number.text)
 
+    @allure.step("Получить номер заказа в разделе 'В работе' на экране Ллента заказов'")
+    def get_order_in_works_number(self):
+        number_in_works = self.wait_and_find_element(OrderListPageLocators.ORDER_IN_WORK)
+        return int(number_in_works.text)
 
-
-
-
+    @allure.step("Получить номер оформленного заказа")
+    def get_new_order_number(self):
+        WebDriverWait(self.driver, 10).until(lambda driver: self.wait_and_find_element(OrderListPageLocators.NUMBER_NEW_ORDER).text != '9999')
+        new_order_number_element = self.wait_and_find_element(OrderListPageLocators.NUMBER_NEW_ORDER)
+        new_order_number = new_order_number_element.text
+        return int(new_order_number)
 
 
 

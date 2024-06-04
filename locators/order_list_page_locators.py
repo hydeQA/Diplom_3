@@ -12,4 +12,9 @@ class OrderListPageLocators:
     ORDER_HISTORY_BTN = (By.XPATH, "//a[text()='История заказов']")
     ORDER_NUMBER_IN_HISTORY = (By.XPATH, "(//p[contains(@class, 'text text_type_digits-default')])[1]")
     ORDER_COUNTER = (By.XPATH, "(//p[contains(@class, 'OrderFeed_number__2MbrQ')])[1]")
-
+    ORDER_COUNTER_TODAY = (By.XPATH, "(//p[contains(@class, 'OrderFeed_number__2MbrQ')])[2]")
+    NUMBER_READY_ORDER = (By.XPATH, "(//li[contains(@class, 'text text_type_digits-default')])[2]")
+    PARENT_LIST = (By.XPATH, "//ul[@class='OrderFeed_orderListReady__1YFem OrderFeed_orderList__cBvyi']")
+    ORDER_ITEMS = (By.XPATH, ".//li[contains(@class, 'text text_type_digits-default mb-2')]")
+    ORDER_IN_WORK = (By.XPATH, "(//li[contains(@class, 'text text_type_digits-default mb-2')])[6][1]")
+    NUMBER_NEW_ORDER = (By.XPATH, "//h2[contains(@class, 'Modal_modal__title_shadow__3ikwq Modal_modal__title__2L34m text text_type_digits-large mb-8')]")
