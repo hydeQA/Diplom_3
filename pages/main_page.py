@@ -18,24 +18,24 @@ class Main_Page(BasePage):
     @allure.step("Кликнуть по кнопке 'Лента заказов' в шапке страницы")
     def click_list_order_button(self):
         list_order_button = self.wait_and_find_element(MainPageLocators.LIST_ORDER_BTN)
-        self.driver.execute_script("arguments[0].click();", list_order_button)
+        self.click_element(list_order_button)
 
     @allure.step("Кликнуть по кнопке 'Конструктор' в шапке страницы")
     def click_constructor_button(self):
-        list_order_button = self.wait_and_find_element(MainPageLocators.CONSTRUCTOR_BTN)
-        self.driver.execute_script("arguments[0].click();", list_order_button)
+        list_constructor_button = self.wait_and_find_element(MainPageLocators.CONSTRUCTOR_BTN)
+        self.click_element(list_constructor_button)
 
     @allure.step("Кликнуть по 'Ингредиенту' в 'Конструкторе'")
     def click_ingredient_button(self):
         ingredients_list = self.wait_and_find_element(MainPageLocators.INGREDIENT_LIST)
         ingredients = ingredients_list.find_elements(*MainPageLocators.INGREDIENT_ITEM)
         second_ingredient = ingredients[1]
-        self.driver.execute_script("arguments[0].click();", second_ingredient)
+        self.click_element(second_ingredient)
 
     @allure.step("Кликнуть по кнопке закрытия всплывающего окна")
     def close_ingredient_card(self):
         x_button = self.wait_and_find_element(MainPageLocators.X_BUTTON)
-        self.driver.execute_script("arguments[0].click();", x_button)
+        self.click_element(x_button)
 
     @allure.step("Перетащить булку в зону создания бургера")
     def add_bun_in_order(self):
@@ -55,10 +55,10 @@ class Main_Page(BasePage):
         target = self.wait_and_find_element(MainPageLocators.BURGER_ORDER)
         drag_and_drop(self.driver, source, target)
 
-    @allure.step("Кликнуть по кнопке 'Личный кабинет' в шапке страницы")
+    @allure.step("Кликнуть по кнопке 'Оформить заказ'")
     def click_create_order_button(self):
         account_button = self.wait_and_find_element(MainPageLocators.CREATE_ORDER_BTN)
-        self.driver.execute_script("arguments[0].click();", account_button)
+        self.click_element(account_button)
 
     @allure.step("Получить количество ингредиентов из счётчика")
     def get_count_ingredient(self):
@@ -88,9 +88,9 @@ class Main_Page(BasePage):
     @allure.step("Кликнуть по кнопке 'Личный кабинет' в шапке страницы")
     def click_account_button(self):
         account_button = self.wait_and_find_element(MainPageLocators.BUTTON_ACCOUNT)
-        self.driver.execute_script("arguments[0].click();", account_button)
+        self.click_element(account_button)
 
     @allure.step("Авторизоваться кликом по кнопке 'Войти'")
     def click_enter_button(self):
         enter_button = self.wait_and_find_element(MainPageLocators.ENTER_BUTTON)
-        self.driver.execute_script("arguments[0].click();", enter_button)
+        self.click_element(enter_button)

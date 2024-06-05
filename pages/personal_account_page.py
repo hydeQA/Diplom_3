@@ -15,8 +15,7 @@ class Personal_Account_Page(BasePage):
     @allure.step("Кликнуть по кнопке 'Личный кабинет' в шапке страницы")
     def click_account_button(self):
         account_button = self.wait_and_find_element(MainPageLocators.BUTTON_ACCOUNT)
-        self.driver.execute_script("arguments[0].click();",
-                                   account_button)  # Клик через JavaScript, потому что в Firefox кнопка перекрывается модальным окном
+        self.click_element(account_button)
     @allure.step("Получить Email для авторизации из сгенерированных данных")
     def get_user_email(self, user_response):
         email = user_response["email"]
@@ -40,14 +39,14 @@ class Personal_Account_Page(BasePage):
     @allure.step("Авторизоваться кликом по кнопке 'Войти'")
     def click_enter_button(self):
         enter_button = self.wait_and_find_element(PersonalAccountLocators.ENTER_BUTTON)
-        self.driver.execute_script("arguments[0].click();", enter_button)
+        self.click_element(enter_button)
 
     @allure.step("Кликнуть по кнопке 'История заказов' в Личном кабинете")
     def click_order_history_btn(self):
         order_history_btn = self.wait_and_find_element(PersonalAccountLocators.ORDER_HISTORY_BTN)
-        self.driver.execute_script("arguments[0].click();", order_history_btn)
+        self.click_element(order_history_btn)
 
     @allure.step("Кликнуть по кнопке 'Выход' в 'Личном Кабинете'")
     def click_exit_btn(self):
         exit_btn = self.wait_and_find_element(PersonalAccountLocators.EXIT_BTN)
-        self.driver.execute_script("arguments[0].click();", exit_btn)
+        self.click_element(exit_btn)

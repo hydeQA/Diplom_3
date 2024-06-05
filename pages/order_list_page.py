@@ -18,12 +18,12 @@ class OrderListPage(BasePage):
     @allure.step("Кликнуть по кнопке 'Лента заказов' в шапке страницы")
     def click_list_order_button(self):
         list_order_button = self.wait_and_find_element(MainPageLocators.LIST_ORDER_BTN)
-        self.driver.execute_script("arguments[0].click();", list_order_button)
+        self.click_element(list_order_button)
 
     @allure.step("Открыть окно с деталями заказа кликом по карточке заказа")
     def click_order_card(self):
         order_card = self.wait_and_find_element(OrderListPageLocators.ORDER_CARD)
-        self.driver.execute_script("arguments[0].click();", order_card)
+        self.click_element(order_card)
 
     @allure.step("Получить Email для авторизации из сгенерированных данных")
     def get_user_email(self, user_response):
@@ -48,12 +48,12 @@ class OrderListPage(BasePage):
     @allure.step("Авторизоваться кликом по кнопке 'Войти'")
     def click_enter_button(self):
         enter_button = self.wait_and_find_element(OrderListPageLocators.ENTER_BUTTON)
-        self.driver.execute_script("arguments[0].click();", enter_button)
+        self.click_element(enter_button)
 
     @allure.step("Кликнуть по кнопке 'Личный кабинет' в шапке страницы")
     def click_account_button(self):
         account_button = self.wait_and_find_element(MainPageLocators.BUTTON_ACCOUNT)
-        self.driver.execute_script("arguments[0].click();", account_button)
+        self.click_element(account_button)
 
     @allure.step("Перетащить булку в зону создания бургера")
     def add_bun_in_order(self):
@@ -73,20 +73,20 @@ class OrderListPage(BasePage):
         target = self.wait_and_find_element(MainPageLocators.BURGER_ORDER)
         drag_and_drop(self.driver, source, target)
 
-    @allure.step("Кликнуть по кнопке 'Личный кабинет' в шапке страницы")
+    @allure.step("Кликнуть по кнопке 'Оформить заказ'")
     def click_create_order_button(self):
-        account_button = self.wait_and_find_element(MainPageLocators.CREATE_ORDER_BTN)
-        self.driver.execute_script("arguments[0].click();", account_button)
+        create_button = self.wait_and_find_element(MainPageLocators.CREATE_ORDER_BTN)
+        self.click_element(create_button)
 
-    @allure.step("Кликнуть по кнопке 'Личный кабинет' в шапке страницы")
+    @allure.step("Кликнуть по кнопке закрытия всплывающего окна")
     def click_order_card_x_button(self):
         x_button = self.wait_and_find_element(OrderListPageLocators.CLOSE_WINDOW_BTN)
-        self.driver.execute_script("arguments[0].click();", x_button)
+        self.click_element(x_button)
 
     @allure.step("Кликнуть по кнопке 'История заказов' в Личном кабинете")
     def click_order_history_btn(self):
         order_history_btn = self.wait_and_find_element(OrderListPageLocators.ORDER_HISTORY_BTN)
-        self.driver.execute_script("arguments[0].click();", order_history_btn)
+        self.click_element(order_history_btn)
 
     @allure.step("Получить номер последнего заказа")
     def get_order_number(self):
@@ -100,8 +100,8 @@ class OrderListPage(BasePage):
 
     @allure.step("Кликнуть по кнопке 'Конструктор' в шапке страницы")
     def click_constructor_button(self):
-        list_order_button = self.wait_and_find_element(MainPageLocators.CONSTRUCTOR_BTN)
-        self.driver.execute_script("arguments[0].click();", list_order_button)
+        constructor_button = self.wait_and_find_element(MainPageLocators.CONSTRUCTOR_BTN)
+        self.click_element(constructor_button)
 
     @allure.step("Получить значение счётчика 'Выполнено за сегодня' заказаов на странице 'Лента заказов'")
     def get_orders_counter_today(self):

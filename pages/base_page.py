@@ -22,3 +22,7 @@ class BasePage:
             return True
         except TimeoutException:
             return False
+
+
+    def click_element(self, locator):
+        self.driver.execute_script("arguments[0].click();", locator)
