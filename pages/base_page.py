@@ -22,8 +22,3 @@ class BasePage:
             return True
         except TimeoutException:
             return False
-
-
-    def switch_to_new_tab(self, locator):
-        self.driver.switch_to.window(self.driver.window_handles[-1])
-        WebDriverWait(self.driver, 5).until(expected_conditions.visibility_of_element_located(locator))
