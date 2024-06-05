@@ -27,8 +27,7 @@ class Main_Page(BasePage):
 
     @allure.step("Кликнуть по 'Ингредиенту' в 'Конструкторе'")
     def click_ingredient_button(self):
-        ingredients_list = WebDriverWait(self.driver, 10).until(
-            expected_conditions.visibility_of_element_located(MainPageLocators.INGREDIENT_LIST))
+        ingredients_list = self.wait_and_find_element(MainPageLocators.INGREDIENT_LIST)
         ingredients = ingredients_list.find_elements(*MainPageLocators.INGREDIENT_ITEM)
         second_ingredient = ingredients[1]
         self.driver.execute_script("arguments[0].click();", second_ingredient)
@@ -63,8 +62,7 @@ class Main_Page(BasePage):
 
     @allure.step("Получить количество ингредиентов из счётчика")
     def get_count_ingredient(self):
-        counter_element = WebDriverWait(self.driver, 10).until(
-            expected_conditions.visibility_of_element_located(MainPageLocators.COUNTER))
+        counter_element = self.wait_and_find_element(MainPageLocators.COUNTER)
         return counter_element.text
 
     @allure.step("Получить Email для авторизации из сгенерированных данных")
