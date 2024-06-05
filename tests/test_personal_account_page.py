@@ -19,7 +19,7 @@ class TestPersonalAccountPage:
         account_page.set_email(email)
         account_page.set_password(password)
         account_page.click_enter_button()
-        account_page.wait_and_find_element(MainPageLocators.TITLE_MAIN_PAGE)
+        account_page.wait_and_find_element(PersonalAccountLocators.TITLE_MAIN_PAGE)
         account_page.click_account_button()
         access_token = burger_api.get_access_token(user_response)
         burger_api.delete_user(access_token)
@@ -39,7 +39,7 @@ class TestPersonalAccountPage:
         account_page.set_email(email)
         account_page.set_password(password)
         account_page.click_enter_button()
-        account_page.wait_and_find_element(MainPageLocators.TITLE_MAIN_PAGE)
+        account_page.wait_and_find_element(PersonalAccountLocators.TITLE_MAIN_PAGE)
         account_page.click_account_button()
 
         account_page.click_order_history_btn()
@@ -61,7 +61,7 @@ class TestPersonalAccountPage:
         account_page.set_email(email)
         account_page.set_password(password)
         account_page.click_enter_button()
-        account_page.wait_and_find_element(MainPageLocators.TITLE_MAIN_PAGE)
+        account_page.wait_and_find_element(PersonalAccountLocators.TITLE_MAIN_PAGE)
         account_page.click_account_button()
 
         account_page.click_exit_btn()

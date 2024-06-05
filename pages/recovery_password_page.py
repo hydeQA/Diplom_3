@@ -14,7 +14,7 @@ class Recovery_Password_Page(BasePage):
 
     @allure.step("Кликнуть по кнопке 'Личный кабинет' в шапке страницы")
     def click_account_button(self):
-        account_button = self.wait_and_find_element(MainPageLocators.BUTTON_ACCOUNT)
+        account_button = self.wait_and_find_element(RecoveryPassPageLocators.BUTTON_ACCOUNT)
         self.click_element(account_button)
 
     @allure.step("Кликнуть по кнопке 'Восстановить пароль'")

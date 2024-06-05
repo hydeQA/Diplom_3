@@ -17,7 +17,7 @@ class OrderListPage(BasePage):
 
     @allure.step("Кликнуть по кнопке 'Лента заказов' в шапке страницы")
     def click_list_order_button(self):
-        list_order_button = self.wait_and_find_element(MainPageLocators.LIST_ORDER_BTN)
+        list_order_button = self.wait_and_find_element(OrderListPageLocators.LIST_ORDER_BTN)
         self.click_element(list_order_button)
 
     @allure.step("Открыть окно с деталями заказа кликом по карточке заказа")
@@ -52,30 +52,30 @@ class OrderListPage(BasePage):
 
     @allure.step("Кликнуть по кнопке 'Личный кабинет' в шапке страницы")
     def click_account_button(self):
-        account_button = self.wait_and_find_element(MainPageLocators.BUTTON_ACCOUNT)
+        account_button = self.wait_and_find_element(OrderListPageLocators.BUTTON_ACCOUNT)
         self.click_element(account_button)
 
     @allure.step("Перетащить булку в зону создания бургера")
     def add_bun_in_order(self):
-        source = self.wait_and_find_element(MainPageLocators.BUN_INGREDIENT)
-        target = self.wait_and_find_element(MainPageLocators.BURGER_ORDER)
+        source = self.wait_and_find_element(OrderListPageLocators.BUN_INGREDIENT)
+        target = self.wait_and_find_element(OrderListPageLocators.BURGER_ORDER)
         drag_and_drop(self.driver, source, target)
 
     @allure.step("Перетащить соус в зону создания бургера")
     def add_sauce_in_order(self):
-        source = self.wait_and_find_element(MainPageLocators.SAUCE_INGREDIENT)
-        target = self.wait_and_find_element(MainPageLocators.BURGER_ORDER)
+        source = self.wait_and_find_element(OrderListPageLocators.SAUCE_INGREDIENT)
+        target = self.wait_and_find_element(OrderListPageLocators.BURGER_ORDER)
         drag_and_drop(self.driver, source, target)
 
     @allure.step("Перетащить мясо в зону создания бургера")
     def add_meat_in_order(self):
-        source = self.wait_and_find_element(MainPageLocators.MEAT_INGREDIENT)
-        target = self.wait_and_find_element(MainPageLocators.BURGER_ORDER)
+        source = self.wait_and_find_element(OrderListPageLocators.MEAT_INGREDIENT)
+        target = self.wait_and_find_element(OrderListPageLocators.BURGER_ORDER)
         drag_and_drop(self.driver, source, target)
 
     @allure.step("Кликнуть по кнопке 'Оформить заказ'")
     def click_create_order_button(self):
-        create_button = self.wait_and_find_element(MainPageLocators.CREATE_ORDER_BTN)
+        create_button = self.wait_and_find_element(OrderListPageLocators.CREATE_ORDER_BTN)
         self.click_element(create_button)
 
     @allure.step("Кликнуть по кнопке закрытия всплывающего окна")
@@ -100,7 +100,7 @@ class OrderListPage(BasePage):
 
     @allure.step("Кликнуть по кнопке 'Конструктор' в шапке страницы")
     def click_constructor_button(self):
-        constructor_button = self.wait_and_find_element(MainPageLocators.CONSTRUCTOR_BTN)
+        constructor_button = self.wait_and_find_element(OrderListPageLocators.CONSTRUCTOR_BTN)
         self.click_element(constructor_button)
 
     @allure.step("Получить значение счётчика 'Выполнено за сегодня' заказаов на странице 'Лента заказов'")

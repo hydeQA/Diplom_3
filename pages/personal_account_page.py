@@ -14,7 +14,7 @@ class Personal_Account_Page(BasePage):
 
     @allure.step("Кликнуть по кнопке 'Личный кабинет' в шапке страницы")
     def click_account_button(self):
-        account_button = self.wait_and_find_element(MainPageLocators.BUTTON_ACCOUNT)
+        account_button = self.wait_and_find_element(PersonalAccountLocators.BUTTON_ACCOUNT)
         self.click_element(account_button)
     @allure.step("Получить Email для авторизации из сгенерированных данных")
     def get_user_email(self, user_response):
