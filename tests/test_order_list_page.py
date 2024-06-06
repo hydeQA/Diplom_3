@@ -1,6 +1,4 @@
 from pages.main_page import MainPage
-from locators.order_list_page_locators import OrderListPageLocators
-from locators.main_page_locators import MainPageLocators
 import allure
 import burger_api
 
@@ -12,7 +10,7 @@ class TestOrderListPage:
         main_page.open()
         order_list_page = main_page.click_list_order_button()
         order_list_page.click_order_card()
-        assert order_list_page.is_element_present(OrderListPageLocators.INGREDIENT_IN_ORDER)
+        assert order_list_page.check_open_window_with_order_details()
 
     @allure.title("Проверка появления номера нового заказа на экране 'Лента заказов'")
     @allure.description("Создаём заказ и проверяем, что его номер появляется среди всех заказова на странице 'Лента заказов'")
@@ -29,7 +27,7 @@ class TestOrderListPage:
         personal_account_page.set_email(email)
         personal_account_page.set_password(password)
         personal_account_page.click_enter_button()
-        main_page.wait_and_find_element(MainPageLocators.TITLE_MAIN_PAGE)
+        main_page.find_main_page_title()
         # Создаём заказ бургера с булкой моусом и мясом
         main_page.add_bun_in_order()
         main_page.add_sauce_in_order()
@@ -37,7 +35,7 @@ class TestOrderListPage:
         main_page.click_create_order_button()
         main_page.click_order_card_x_button()
         # Переходим на экран "История заказов" и получаем номер последнего заказа
-        main_page.wait_and_find_element(MainPageLocators.TITLE_MAIN_PAGE)
+        main_page.find_main_page_title()
         main_page.click_account_button()
         personal_account_page.click_order_history_btn()
         order_number = personal_account_page.get_order_number()
@@ -64,7 +62,7 @@ class TestOrderListPage:
         personal_account_page.set_email(email)
         personal_account_page.set_password(password)
         personal_account_page.click_enter_button()
-        main_page.wait_and_find_element(MainPageLocators.TITLE_MAIN_PAGE)
+        main_page.find_main_page_title()
         # Получаем значение счётчика заказов на странице "Лента заказов"
         order_list_page = main_page.click_list_order_button()
         counter_before = order_list_page.get_orders_counter()
@@ -98,7 +96,7 @@ class TestOrderListPage:
         personal_account_page.set_email(email)
         personal_account_page.set_password(password)
         personal_account_page.click_enter_button()
-        main_page.wait_and_find_element(MainPageLocators.TITLE_MAIN_PAGE)
+        main_page.find_main_page_title()
         # Получаем значение счётчика выполненных за сегодня заказов на странице "Лента заказов"
         order_list_page = main_page.click_list_order_button()
         counter_before = order_list_page.get_orders_counter_today()
@@ -132,7 +130,7 @@ class TestOrderListPage:
         personal_account_page.set_email(email)
         personal_account_page.set_password(password)
         personal_account_page.click_enter_button()
-        main_page.wait_and_find_element(MainPageLocators.TITLE_MAIN_PAGE)
+        main_page.find_main_page_title()
         # Добавляем ингредиенты и создаём новый заказ. Получаем его номер и закрываем всплывающее окно.
         main_page.add_bun_in_order()
         main_page.add_sauce_in_order()

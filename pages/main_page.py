@@ -90,3 +90,20 @@ class MainPage(BasePage):
         new_order_number = new_order_number_element.text
         return int(new_order_number)
 
+    @allure.step("Проверить что открылась карточка с информацией об ингредиенте")
+    def check_ingredient_title(self):
+        if self.is_element_present(MainPageLocators.INGREDIENT_TITLE) == True:
+            return True
+
+    @allure.step("Проверить что карточка с информацией об ингредиенте закрылась")
+    def check_main_page_title(self):
+        if self.is_element_present(MainPageLocators.TITLE_MAIN_PAGE) == True:
+            return True
+
+    @allure.step("Дождаться пока откроется Главная страница")
+    def find_main_page_title(self):
+        return self.wait_and_find_element(MainPageLocators.TITLE_MAIN_PAGE)
+
+    @allure.step("Дождаться пока откроется окно с деталями заказа")
+    def find_create_order_description(self):
+        return self.wait_and_find_element(MainPageLocators.CREATE_ORDER_DESCRIPTION)

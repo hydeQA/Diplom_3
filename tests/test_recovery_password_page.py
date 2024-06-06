@@ -1,5 +1,4 @@
 from pages.main_page import MainPage
-from locators.recovery_password_page_locators import RecoveryPassPageLocators
 from data import UserData
 import allure
 
@@ -13,9 +12,9 @@ class TestRecoveryPassPage:
         main_page.open()
         account_page = main_page.click_account_button()
         recovery_page = account_page.click_recovery_button()
-        assert recovery_page.is_element_present(RecoveryPassPageLocators.RECOVER_TITLE)
+        assert recovery_page.check_recovery_page_title()
 
-    @allure.title("Проверка переход на экран 'Восстановление пароля' после ввода пароля и клика по кнопке "
+    @allure.title("Проверка перехода на экран 'Восстановление пароля' после ввода пароля и клика по кнопке "
                   "'Восстановить'")
     @allure.description("Проверка ввода почты и клика по кнопке 'Восстановить'")
     def test_input_email_and_click_button_success(self, driver):
@@ -25,7 +24,7 @@ class TestRecoveryPassPage:
         recovery_page = account_page.click_recovery_button()
         recovery_page.set_email(UserData.USER_EMAIL)
         recovery_page.click_button_recovery()
-        assert recovery_page.is_element_present(RecoveryPassPageLocators.RECOVER_PASS_TITLE)
+        assert recovery_page.check_recovery_pass_title()
 
     @allure.title("Проверка работы кнопки раскрытия пароля 'Глазик' на экране восстановления пароля")
     @allure.description("На экране смены пароля кликаем на 'Глазик' для отображения скрытого пароля и проверяем"

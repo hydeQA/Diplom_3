@@ -40,3 +40,13 @@ class PersonalAccountPage(BasePage):
         recovery_button = self.wait_and_find_element(PersonalAccountLocators.RECOVERY_BUTTON)
         self.click_element(recovery_button)
         return RecoveryPasswordPage(self.driver)
+
+    @allure.step("Проверить что открылcя Личный кабинет")
+    def check_account_description(self):
+        if self.is_element_present(PersonalAccountLocators.DESCRIPTION_ACCOUNT) == True:
+            return True
+
+    @allure.step("Дождаться пока откроется экран Авторизации")
+    def find_login_page_title(self):
+        if self.is_element_present(PersonalAccountLocators.TITLE_LOGIN_PAGE) == True:
+            return True

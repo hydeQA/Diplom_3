@@ -27,3 +27,13 @@ class RecoveryPasswordPage(BasePage):
     def get_password_input_state(self):
         input_password = self.wait_and_find_element(RecoveryPassPageLocators.FIELD_NEW_PASSWORD)
         return input_password.get_attribute("type") == "text"
+
+    @allure.step("Проверить что открылся экран восстановления пароля")
+    def check_recovery_page_title(self):
+        if self.is_element_present(RecoveryPassPageLocators.RECOVER_TITLE) == True:
+            return True
+
+    @allure.step("Проверить что открылся экран восстановления пароля поссле ввода пароля")
+    def check_recovery_pass_title(self):
+        if self.is_element_present(RecoveryPassPageLocators.RECOVER_TITLE) == True:
+            return True

@@ -35,3 +35,8 @@ class OrderListPage(BasePage):
     def get_order_in_works_number(self):
         number_in_works = self.wait_and_find_element(OrderListPageLocators.ORDER_IN_WORK)
         return int(number_in_works.text)
+
+    @allure.step("Проверить что открылось окно с деталями заказа")
+    def check_open_window_with_order_details(self):
+        return self.is_element_present(OrderListPageLocators.INGREDIENT_IN_ORDER)
+

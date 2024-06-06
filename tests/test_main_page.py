@@ -1,6 +1,5 @@
 import burger_api
 from pages.main_page import MainPage
-from locators.main_page_locators import MainPageLocators
 import allure
 from urls import Urls
 
@@ -28,7 +27,7 @@ class TestMainPage:
         main_page = MainPage(driver)
         main_page.open()
         main_page.click_ingredient_button()
-        assert main_page.is_element_present(MainPageLocators.INGREDIENT_TITLE)
+        assert main_page.check_ingredient_title() == True
 
     @allure.title("Проверка успешного закрытия всплывающего окна с информацией об Ингридиенте")
     @allure.description("Проверка закрытия всплывающего окна с информацией об Ингридиенте после клика по кнопке 'Крестик'")
@@ -37,7 +36,7 @@ class TestMainPage:
         main_page.open()
         main_page.click_ingredient_button()
         main_page.close_ingredient_card()
-        assert main_page.is_element_present(MainPageLocators.TITLE_MAIN_PAGE)
+        assert main_page.check_main_page_title() == True
 
     @allure.title("Проверка изменения количества ингредиента в счётчике при добавлении ингредиента в бургер")
     @allure.description("Проверка изменения счётчика ингредиента при добавлении его в конструктор бургера")
@@ -64,12 +63,12 @@ class TestMainPage:
         personal_account_page.set_password(password)
         personal_account_page.click_enter_button()
 
-        main_page.wait_and_find_element(MainPageLocators.TITLE_MAIN_PAGE)
+        main_page.find_main_page_title()
         main_page.add_bun_in_order()
         main_page.add_sauce_in_order()
         main_page.add_meat_in_order()
         main_page.click_create_order_button()
-        description_create_order = main_page.wait_and_find_element((MainPageLocators.CREATE_ORDER_DESCRIPTION))
+        description_create_order = main_page.find_create_order_description()
         access_token = burger_api.get_access_token(user_response)
         burger_api.delete_user(access_token)
         assert description_create_order.text == "Ваш заказ начали готовить"
