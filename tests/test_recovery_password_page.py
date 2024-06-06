@@ -1,4 +1,4 @@
-from pages.recovery_password_page import Recovery_Password_Page
+from pages.main_page import MainPage
 from locators.recovery_password_page_locators import RecoveryPassPageLocators
 from data import UserData
 import allure
@@ -9,21 +9,21 @@ class TestRecoveryPassPage:
     @allure.description("Проверка успешного перехода с главной страницы в личный кабинет и далее на страницу "
                         "восстановления пароля, кликом по кнопке 'Восстановить пароль'")
     def test_success_recovery_pass(self, driver):
-        recovery_page = Recovery_Password_Page(driver)
-        recovery_page.open()
-        recovery_page.click_account_button()
-        recovery_page.click_recovery_button()
+        main_page = MainPage(driver)
+        main_page.open()
+        account_page = main_page.click_account_button()
+        recovery_page = account_page.click_recovery_button()
         assert recovery_page.is_element_present(RecoveryPassPageLocators.RECOVER_TITLE)
 
     @allure.title("Проверка переход на экран 'Восстановление пароля' после ввода пароля и клика по кнопке "
                   "'Восстановить'")
     @allure.description("Проверка ввода почты и клика по кнопке 'Восстановить'")
     def test_input_email_and_click_button_success(self, driver):
-        recovery_page = Recovery_Password_Page(driver)
-        recovery_page.open()
-        recovery_page.click_account_button()
-        recovery_page.click_recovery_button()
-        recovery_page.set_emil(UserData.USER_EMAIL)
+        main_page = MainPage(driver)
+        main_page.open()
+        account_page = main_page.click_account_button()
+        recovery_page = account_page.click_recovery_button()
+        recovery_page.set_email(UserData.USER_EMAIL)
         recovery_page.click_button_recovery()
         assert recovery_page.is_element_present(RecoveryPassPageLocators.RECOVER_PASS_TITLE)
 
@@ -31,11 +31,11 @@ class TestRecoveryPassPage:
     @allure.description("На экране смены пароля кликаем на 'Глазик' для отображения скрытого пароля и проверяем"
                         " что поле становится активным")
     def test_eye_button_show_password_success(self, driver):
-        recovery_page = Recovery_Password_Page(driver)
-        recovery_page.open()
-        recovery_page.click_account_button()
-        recovery_page.click_recovery_button()
-        recovery_page.set_emil(UserData.USER_EMAIL)
+        main_page = MainPage(driver)
+        main_page.open()
+        account_page = main_page.click_account_button()
+        recovery_page = account_page.click_recovery_button()
+        recovery_page.set_email(UserData.USER_EMAIL)
         recovery_page.click_button_recovery()               # Нажать кнопку "Восстановить"
         recovery_page.set_new_password(UserData.NEW_PASSWORD)
         old_state = recovery_page.get_password_input_state()

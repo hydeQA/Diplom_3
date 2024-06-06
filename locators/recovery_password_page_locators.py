@@ -2,7 +2,7 @@ from selenium.webdriver.common.by import By
 
 class RecoveryPassPageLocators:
 
-    RECOVERY_BUTTON = (By.XPATH, "//a[text()='Восстановить пароль']")           # Кнопка 'Восстановить пароль'
+
     RECOVER_TITLE = (By.XPATH, "//h2[text()='Восстановление пароля']")          # Заголовок 'Восстановление пароля'
     FIELD_EMAIL = (By.XPATH, "//input[@class='text input__textfield text_type_main-default']")
     BUTTON_RECOVERY = (By.XPATH, "//button[text() = 'Восстановить']")

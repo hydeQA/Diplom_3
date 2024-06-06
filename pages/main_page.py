@@ -1,16 +1,14 @@
+from selenium.webdriver.support.wait import WebDriverWait
 from seletools.actions import drag_and_drop
 from pages.base_page import BasePage
+from pages.order_list_page import OrderListPage
+from pages.personal_account_page import PersonalAccountPage
 from urls import Urls
 from locators.main_page_locators import MainPageLocators
 import allure
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions
 
-class Main_Page(BasePage):
 
-    def __init__(self, driver):
-        super().__init__(driver)
-
+class MainPage(BasePage):
     @allure.step("Открыть в браузере страницу 'Stellar Burger'")
     def open(self):
         self.open_page(Urls.BASE_URL)
@@ -19,11 +17,8 @@ class Main_Page(BasePage):
     def click_list_order_button(self):
         list_order_button = self.wait_and_find_element(MainPageLocators.LIST_ORDER_BTN)
         self.click_element(list_order_button)
+        return OrderListPage(self.driver)
 
-    @allure.step("Кликнуть по кнопке 'Конструктор' в шапке страницы")
-    def click_constructor_button(self):
-        list_constructor_button = self.wait_and_find_element(MainPageLocators.CONSTRUCTOR_BTN)
-        self.click_element(list_constructor_button)
 
     @allure.step("Кликнуть по 'Ингредиенту' в 'Конструкторе'")
     def click_ingredient_button(self):
@@ -75,22 +70,23 @@ class Main_Page(BasePage):
         password = user_response["password"]
         return password
 
-    @allure.step("Ввести почту в поле email")
-    def set_email(self, email):
-        input_email = self.wait_and_find_element(MainPageLocators.FIELD_EMAIL)
-        input_email.send_keys(email)
-
-    @allure.step("Ввести пароль в поле 'Пароль'")
-    def set_password(self, password):
-        input_password = self.wait_and_find_element(MainPageLocators.FIELD_PASSWORD)
-        input_password.send_keys(password)
-
     @allure.step("Кликнуть по кнопке 'Личный кабинет' в шапке страницы")
     def click_account_button(self):
         account_button = self.wait_and_find_element(MainPageLocators.BUTTON_ACCOUNT)
         self.click_element(account_button)
+        return PersonalAccountPage(self.driver)
 
-    @allure.step("Авторизоваться кликом по кнопке 'Войти'")
-    def click_enter_button(self):
-        enter_button = self.wait_and_find_element(MainPageLocators.ENTER_BUTTON)
-        self.click_element(enter_button)
+
+    @allure.step("Кликнуть по кнопке закрытия всплывающего окна")
+    def click_order_card_x_button(self):
+        x_button = self.wait_and_find_element(MainPageLocators.CLOSE_WINDOW_BTN)
+        self.click_element(x_button)
+
+
+    @allure.step("Получить номер оформленного заказа")
+    def get_new_order_number(self):
+        WebDriverWait(self.driver, 10).until(lambda driver: self.wait_and_find_element(MainPageLocators.NUMBER_NEW_ORDER).text != '9999')
+        new_order_number_element = self.wait_and_find_element(MainPageLocators.NUMBER_NEW_ORDER)
+        new_order_number = new_order_number_element.text
+        return int(new_order_number)
+

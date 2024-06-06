@@ -1,31 +1,10 @@
 from pages.base_page import BasePage
-from urls import Urls
 from locators.personal_account_page_locators import PersonalAccountLocators
-from locators.main_page_locators import MainPageLocators
 import allure
+from pages.recovery_password_page import RecoveryPasswordPage
 
-class Personal_Account_Page(BasePage):
-    def __init__(self, driver):
-        super().__init__(driver)
 
-    @allure.step("Открыть в браузере страницу 'Stellar Burger'")
-    def open(self):
-        self.open_page(Urls.BASE_URL)
-
-    @allure.step("Кликнуть по кнопке 'Личный кабинет' в шапке страницы")
-    def click_account_button(self):
-        account_button = self.wait_and_find_element(PersonalAccountLocators.BUTTON_ACCOUNT)
-        self.click_element(account_button)
-    @allure.step("Получить Email для авторизации из сгенерированных данных")
-    def get_user_email(self, user_response):
-        email = user_response["email"]
-        return email
-
-    @allure.step("Получить Password для авторизации из сгенерированных данных")
-    def get_user_password(self, user_response):
-        password = user_response["password"]
-        return password
-
+class PersonalAccountPage(BasePage):
     @allure.step("Ввести почту в поле email")
     def set_email(self, email):
         input_email = self.wait_and_find_element(PersonalAccountLocators.FIELD_EMAIL)
@@ -50,3 +29,14 @@ class Personal_Account_Page(BasePage):
     def click_exit_btn(self):
         exit_btn = self.wait_and_find_element(PersonalAccountLocators.EXIT_BTN)
         self.click_element(exit_btn)
+
+    @allure.step("Получить номер последнего заказа")
+    def get_order_number(self):
+        element = self.wait_and_find_element(PersonalAccountLocators.ORDER_NUMBER_IN_HISTORY)
+        return element.text
+
+    @allure.step("Кликнуть по кнопке 'Восстановить пароль'")
+    def click_recovery_button(self):
+        recovery_button = self.wait_and_find_element(PersonalAccountLocators.RECOVERY_BUTTON)
+        self.click_element(recovery_button)
+        return RecoveryPasswordPage(self.driver)
