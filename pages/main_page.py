@@ -1,8 +1,6 @@
 from selenium.webdriver.support.wait import WebDriverWait
 from seletools.actions import drag_and_drop
 from pages.base_page import BasePage
-from pages.order_list_page import OrderListPage
-from pages.personal_account_page import PersonalAccountPage
 from urls import Urls
 from locators.main_page_locators import MainPageLocators
 import allure
@@ -17,7 +15,6 @@ class MainPage(BasePage):
     def click_list_order_button(self):
         list_order_button = self.wait_and_find_element(MainPageLocators.LIST_ORDER_BTN)
         self.click_element(list_order_button)
-        return OrderListPage(self.driver)
 
 
     @allure.step("Кликнуть по 'Ингредиенту' в 'Конструкторе'")
@@ -74,7 +71,6 @@ class MainPage(BasePage):
     def click_account_button(self):
         account_button = self.wait_and_find_element(MainPageLocators.BUTTON_ACCOUNT)
         self.click_element(account_button)
-        return PersonalAccountPage(self.driver)
 
 
     @allure.step("Кликнуть по кнопке закрытия всплывающего окна")

@@ -1,7 +1,6 @@
 from pages.base_page import BasePage
 from locators.personal_account_page_locators import PersonalAccountLocators
 import allure
-from pages.recovery_password_page import RecoveryPasswordPage
 from urls import Urls
 
 
@@ -40,7 +39,6 @@ class PersonalAccountPage(BasePage):
     def click_recovery_button(self):
         recovery_button = self.wait_and_find_element(PersonalAccountLocators.RECOVERY_BUTTON)
         self.click_element(recovery_button)
-        return RecoveryPasswordPage(self.driver)
 
     @allure.step("Проверить что открылcя Личный кабинет")
     def check_account_description(self):

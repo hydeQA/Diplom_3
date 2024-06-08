@@ -1,4 +1,5 @@
 from pages.main_page import MainPage
+from pages.personal_account_page import PersonalAccountPage
 import allure
 import burger_api
 
@@ -12,7 +13,8 @@ class TestPersonalAccountPage:
         main_page.open()
         email = main_page.get_user_email(user_data)
         password = main_page.get_user_password(user_data)
-        personal_account_page = main_page.click_account_button()
+        main_page.click_account_button()
+        personal_account_page = PersonalAccountPage(driver)
         personal_account_page.set_email(email)
         personal_account_page.set_password(password)
         personal_account_page.click_enter_button()
@@ -33,7 +35,8 @@ class TestPersonalAccountPage:
         main_page.open()
         email = main_page.get_user_email(user_data)
         password = main_page.get_user_password(user_data)
-        personal_account_page = main_page.click_account_button()
+        main_page.click_account_button()
+        personal_account_page = PersonalAccountPage(driver)
         personal_account_page.set_email(email)
         personal_account_page.set_password(password)
         personal_account_page.click_enter_button()
@@ -54,7 +57,8 @@ class TestPersonalAccountPage:
         main_page.open()
         email = main_page.get_user_email(user_data)
         password = main_page.get_user_password(user_data)
-        personal_account_page = main_page.click_account_button()
+        main_page.click_account_button()
+        personal_account_page = PersonalAccountPage(driver)
         personal_account_page.set_email(email)
         personal_account_page.set_password(password)
         personal_account_page.click_enter_button()

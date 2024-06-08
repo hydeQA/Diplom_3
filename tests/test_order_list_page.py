@@ -1,4 +1,6 @@
 from pages.main_page import MainPage
+from pages.order_list_page import OrderListPage
+from pages.personal_account_page import PersonalAccountPage
 import allure
 import burger_api
 
@@ -8,7 +10,8 @@ class TestOrderListPage:
     def test_open_detail_order_window_success(self, driver):
         main_page = MainPage(driver)
         main_page.open()
-        order_list_page = main_page.click_list_order_button()
+        main_page.click_list_order_button()
+        order_list_page = OrderListPage(driver)
         order_list_page.click_order_card()
         assert order_list_page.check_open_window_with_order_details()
 
@@ -22,8 +25,9 @@ class TestOrderListPage:
         main_page.open()
         email = main_page.get_user_email(user_data)
         password = main_page.get_user_password(user_data)
+        main_page.click_account_button()
 
-        personal_account_page = main_page.click_account_button()
+        personal_account_page = PersonalAccountPage(driver)
         personal_account_page.set_email(email)
         personal_account_page.set_password(password)
         personal_account_page.click_enter_button()
@@ -40,7 +44,8 @@ class TestOrderListPage:
         personal_account_page.click_order_history_btn()
         order_number = personal_account_page.get_order_number()
         # Переходим на экран "Лента заказов" и получаем номер последнего заказа
-        order_list_page = main_page.click_list_order_button()
+        main_page.click_list_order_button()
+        order_list_page = OrderListPage(driver)
         order_number_in_list = order_list_page.get_order_number()
         # Удаляем созданного пользователя
         access_token = burger_api.get_access_token(user_response)
@@ -58,13 +63,15 @@ class TestOrderListPage:
         main_page.open()
         email = main_page.get_user_email(user_data)
         password = main_page.get_user_password(user_data)
-        personal_account_page = main_page.click_account_button()
+        main_page.click_account_button()
+        personal_account_page = PersonalAccountPage(driver)
         personal_account_page.set_email(email)
         personal_account_page.set_password(password)
         personal_account_page.click_enter_button()
         main_page.find_main_page_title()
         # Получаем значение счётчика заказов на странице "Лента заказов"
-        order_list_page = main_page.click_list_order_button()
+        main_page.click_list_order_button()
+        order_list_page = OrderListPage(driver)
         counter_before = order_list_page.get_orders_counter()
         # Переходим в конструктор и создаём заказ
         order_list_page.click_constructor_button()
@@ -92,13 +99,15 @@ class TestOrderListPage:
         main_page.open()
         email = main_page.get_user_email(user_data)
         password = main_page.get_user_password(user_data)
-        personal_account_page = main_page.click_account_button()
+        main_page.click_account_button()
+        personal_account_page = PersonalAccountPage(driver)
         personal_account_page.set_email(email)
         personal_account_page.set_password(password)
         personal_account_page.click_enter_button()
         main_page.find_main_page_title()
         # Получаем значение счётчика выполненных за сегодня заказов на странице "Лента заказов"
-        order_list_page = main_page.click_list_order_button()
+        main_page.click_list_order_button()
+        order_list_page = OrderListPage(driver)
         counter_before = order_list_page.get_orders_counter_today()
         # Переходим в конструктор и создаём заказ
         order_list_page.click_constructor_button()
@@ -126,7 +135,8 @@ class TestOrderListPage:
         main_page.open()
         email = main_page.get_user_email(user_data)
         password = main_page.get_user_password(user_data)
-        personal_account_page = main_page.click_account_button()
+        main_page.click_account_button()
+        personal_account_page = PersonalAccountPage(driver)
         personal_account_page.set_email(email)
         personal_account_page.set_password(password)
         personal_account_page.click_enter_button()
@@ -139,7 +149,8 @@ class TestOrderListPage:
         new_order_number = main_page.get_new_order_number()
         main_page.click_order_card_x_button()
         # Переходим на экран "Лента заказов" и получаем номер заказа, попавшего столбец "В работе"
-        order_list_page = main_page.click_list_order_button()
+        main_page.click_list_order_button()
+        order_list_page = OrderListPage(driver)
         number_in_order_list = order_list_page.get_order_in_works_number()
         # Удаляем созданного пользователя
         access_token = burger_api.get_access_token(user_response)
