@@ -1,7 +1,7 @@
 import burger_api
 from pages.main_page import MainPage
 import allure
-from urls import Urls
+
 
 class TestMainPage:
     @allure.title("Проверка успешного перехода по кнопке 'Конструктор'")
@@ -11,7 +11,9 @@ class TestMainPage:
         main_page.open()
         order_list_page = main_page.click_list_order_button()
         order_list_page.click_constructor_button()
-        assert driver.current_url == Urls.BASE_URL
+        current_url = order_list_page.check_main_page_url()
+        assert current_url == True
+
 
     @allure.title("Проверка успешного перехода по кнопке 'Лента заказов'")
     @allure.description("Проверка успешного перехода по кнопке 'Лента заказов' в шапке сайта")
@@ -19,7 +21,8 @@ class TestMainPage:
         main_page = MainPage(driver)
         main_page.open()
         main_page.click_list_order_button()
-        assert driver.current_url == (Urls.BASE_URL + Urls.LIST_ORDER_PAGE)
+        current_url = main_page.check_order_list_url()
+        assert current_url == True
 
     @allure.title("Проверка успешного открытия всплывающего окна с информацией об Ингридиенте")
     @allure.description("Проверка открытия всплывающего окна с информацией об Ингридиенте после клика по Ингридиенту")

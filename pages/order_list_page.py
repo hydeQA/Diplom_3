@@ -1,6 +1,7 @@
 from pages.base_page import BasePage
 from locators.order_list_page_locators import OrderListPageLocators
 import allure
+from urls import Urls
 
 
 class OrderListPage(BasePage):
@@ -40,3 +41,6 @@ class OrderListPage(BasePage):
     def check_open_window_with_order_details(self):
         return self.is_element_present(OrderListPageLocators.INGREDIENT_IN_ORDER)
 
+    @allure.step("Сравнить URL текущей страницы с адресом главной страницы")
+    def check_main_page_url(self):
+        return self.driver.current_url == Urls.BASE_URL

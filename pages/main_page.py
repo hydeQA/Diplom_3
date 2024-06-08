@@ -107,3 +107,8 @@ class MainPage(BasePage):
     @allure.step("Дождаться пока откроется окно с деталями заказа")
     def find_create_order_description(self):
         return self.wait_and_find_element(MainPageLocators.CREATE_ORDER_DESCRIPTION)
+
+
+    @allure.step("Сравнить URL текущей страницы с адресом страницы 'Лента заказов'")
+    def check_order_list_url(self):
+        return self.driver.current_url == (Urls.BASE_URL + Urls.LIST_ORDER_PAGE)

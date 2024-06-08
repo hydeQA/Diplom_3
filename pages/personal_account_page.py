@@ -2,6 +2,7 @@ from pages.base_page import BasePage
 from locators.personal_account_page_locators import PersonalAccountLocators
 import allure
 from pages.recovery_password_page import RecoveryPasswordPage
+from urls import Urls
 
 
 class PersonalAccountPage(BasePage):
@@ -50,3 +51,11 @@ class PersonalAccountPage(BasePage):
     def find_login_page_title(self):
         if self.is_element_present(PersonalAccountLocators.TITLE_LOGIN_PAGE) == True:
             return True
+
+    @allure.step("Сравнить URL текущей страницы с адресом страницы 'История заказов'")
+    def check_order_history_page_url(self):
+        return self.driver.current_url == (Urls.BASE_URL + Urls.ORDER_HISTORY_URL)
+
+    @allure.step("Сравнить URL текущей страницы с адресом страницы входа в аккаунт")
+    def check_login_page_url(self):
+        return self.driver.current_url == (Urls.BASE_URL + Urls.LOGIN_URL)

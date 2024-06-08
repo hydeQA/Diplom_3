@@ -1,7 +1,6 @@
 from pages.main_page import MainPage
 import allure
 import burger_api
-from urls import Urls
 
 class TestPersonalAccountPage:
     @allure.title("Проверка успешного открытия личного кабинета авторизованного пользователя")
@@ -43,7 +42,8 @@ class TestPersonalAccountPage:
         personal_account_page.click_order_history_btn()
         access_token = burger_api.get_access_token(user_response)
         burger_api.delete_user(access_token)
-        assert driver.current_url == (Urls.BASE_URL + Urls.ORDER_HISTORY_URL)
+        current_url = personal_account_page.check_order_history_page_url()
+        assert current_url == True
 
     @allure.title("Проверка успешного выхода из аккаунта")
     @allure.description("Проверка успешного выход из аккаунта кликом по кнопке 'Выход' в 'Личном Кабинете'")
@@ -64,4 +64,5 @@ class TestPersonalAccountPage:
         personal_account_page.find_login_page_title()
         access_token = burger_api.get_access_token(user_response)
         burger_api.delete_user(access_token)
-        assert driver.current_url == (Urls.BASE_URL + Urls.LOGIN_URL)
+        current_url = personal_account_page.check_login_page_url()
+        assert current_url == True
